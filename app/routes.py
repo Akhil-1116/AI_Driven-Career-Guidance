@@ -708,10 +708,14 @@ def resume_builderj():
     return render_template('resume_builderj.html')
 
 
-# PDFKit config for Windows
-PDFKIT_CONFIG = pdfkit.configuration(
-    wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-)
+import shutil
+
+wkhtmltopdf_path = shutil.which("wkhtmltopdf")
+if wkhtmltopdf_path is None:
+    raise RuntimeError("wkhtmltopdf is not installed or not in PATH.")
+
+PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf=wkhtmltopdf_path)
+
 PDFKIT_OPTIONS = {
     'enable-local-file-access': True,
     'encoding': 'UTF-8',
