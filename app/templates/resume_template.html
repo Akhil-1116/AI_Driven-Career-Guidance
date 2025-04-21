@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.name }} - Resume</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 40px;
+            color: #000;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 16px;
+            margin-top: 20px;
+            color: #003366;
+            border-bottom: 1px solid #003366;
+        }
+        .section {
+            margin-bottom: 15px;
+        }
+        .subsection {
+            margin-bottom: 8px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .header {
+            text-align: center;
+        }
+        .contact {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+        ul {
+            margin-top: 5px;
+            padding-left: 18px;
+        }
+        li {
+            margin-bottom: 3px;
+        }
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+        }
+        .left {
+            width: 75%;
+        }
+        .right {
+            width: 23%;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ resume.name }}</h1>
+        <div class="contact">
+            {{ resume.email }} | {{ resume.phone }} | {{ resume.address }}<br>
+            {% if resume.linkedin %}LinkedIn: {{ resume.linkedin }} | {% endif %}
+            {% if resume.github %}GitHub: {{ resume.github }}{% endif %}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="two-column">
+            <div class="left">
+                <div class="bold">{{ resume.education.degree }} - {{ resume.education.college }}</div>
+            </div>
+            <div class="right">{{ resume.education.year }}</div>
+        </div>
+        <div>CGPA: {{ resume.education.GPA }}</div>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in resume.skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        <ul>
+            {% for project in resume.projects %}
+                <li>
+                    <p><strong>{{ project.project_title }}</strong></p>
+                    <p>{{ project.project_description }}</p>
+                    {% if project.project_technologies %}
+                        <p class="text-sm text-gray-600">
+                            <strong>Technologies:</strong> {{ project.project_technologies | join(', ') }}
+                        </p>
+                    {% endif %}
+                    <p class="text-sm text-gray-600"><strong>Date:</strong> {{ project.project_date }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+
+    <div class="section">
+        <h2>Extracurricular Activities</h2>
+        <ul>
+                <li><strong>{{ resume.activity_title }}</strong> - {{ resume.activity_description }}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Certifications</h2>
+        <ul>
+            {% for cert in resume.certifications %}
+                <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html> 
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ resume.name }} - Resume</title>
+    <style>
+        body {
+            font-family: 'Calibri', sans-serif;
+            font-size: 11.5pt;
+            margin: 40px;
+            color: #000;
+        }
+        h1 {
+            font-size: 22pt;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 13.5pt;
+            margin-top: 20px;
+            color: #000;
+            border-bottom: 1px solid #000;
+            font-weight: bold;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .subsection {
+            margin-bottom: 10px;
+        }
+        .bold {
+            font-weight: bold;
+        }
+        .header {
+            text-align: left;
+        }
+        .contact {
+            font-size: 10.5pt;
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+        ul {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+        .two-column {
+            display: flex;
+            justify-content: space-between;
+        }
+        .left {
+            width: 75%;
+        }
+        .right {
+            width: 25%;
+            text-align: right;
+        }
+        .small-text {
+            font-size: 10pt;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ resume.name }}</h1>
+        <div class="contact">
+            {{ resume.address }}<br>
+            {{ resume.phone }} — {{ resume.email }}<br>
+            {% if resume.linkedin %}LinkedIn: {{ resume.linkedin }} — {% endif %}
+            {% if resume.github %}GitHub: {{ resume.github }}{% endif %}
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Education</h2>
+        <div class="subsection">
+            <div class="two-column">
+                <div class="left bold">{{ resume.education.degree }} - {{ resume.education.college }}</div>
+                <div class="right">{{ resume.education.year }}</div>
+            </div>
+            <div class="small-text">CGPA: {{ resume.education.GPA }}</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in resume.skills %}
+                <li>{{ skill }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Projects</h2>
+        {% for project in resume.projects %}
+        <div class="subsection">
+            <div class="two-column">
+                <div class="left bold">{{ project.title }}</div>
+                <div class="right">{{ project.date }}</div>
+            </div>
+            <div class="small-text"><em>{{ project.technologies | join(', ') }}</em></div>
+            <ul>
+                {% for point in project.description %}
+                    <li>{{ point }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Extracurricular Activities</h2>
+        <ul>
+            {% for activity in resume.extracurriculars %}
+                <li><strong>{{ activity.title }}</strong> - {{ activity.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Certifications</h2>
+        <ul>
+            {% for cert in resume.certifications %}
+                <li>{{ cert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html> -->

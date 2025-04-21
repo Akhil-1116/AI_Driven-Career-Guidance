@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Build Your Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-400 to-blue-500 min-h-screen text-white px-6 py-12 space-y-14">
+
+  <div class="max-w-5xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl p-12 shadow-2xl border border-white/20 space-y-12">
+
+    <header class="text-center">
+      <h1 class="text-5xl font-extrabold drop-shadow-lg mb-3">Build Your Resume</h1>
+      <p class="text-white/80 text-xl tracking-wide max-w-xl mx-auto">Craft a standout resume with your best achievements and skills</p>
+    </header>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-12" novalidate>
+
+      <!-- Personal Details -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">👤 Personal Details</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <input
+            name="name"
+            placeholder="Full Name"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="phone"
+            placeholder="Phone Number"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="address"
+            placeholder="Address"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+        </div>
+      </section>
+
+      <!-- Social Links -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">🔗 Social Links</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <input
+            name="linkedin"
+            placeholder="LinkedIn Profile URL"
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="github"
+            placeholder="GitHub Profile URL"
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+        </div>
+      </section>
+
+      <!-- Education Details -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">🎓 Education Details</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <input
+            name="degree"
+            placeholder="Degree (e.g., B.Tech)"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="college"
+            placeholder="College Name"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="year"
+            placeholder="Year of Graduation"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="GPA"
+            placeholder="GPA"
+            required
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">🧠 Skills</h2>
+        <input
+          name="skills"
+          placeholder="Add Skills (comma separated)"
+          required
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        />
+      </section>
+
+      <!-- Projects -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">💻 Projects</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <input
+            name="project_title"
+            placeholder="Project Title"
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+          <input
+            name="project_date"
+            placeholder="Project Date"
+            class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                   focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+          />
+        </div>
+        <textarea
+          name="project_description"
+          placeholder="Project Description"
+          rows="4"
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md resize-none
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        ></textarea>
+        <input
+          name="project_technologies"
+          placeholder="Technologies Used (comma separated)"
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        />
+      </section>
+
+      <!-- Extracurricular Activities -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">🌟 Extracurricular Activities</h2>
+        <input
+          name="activity_title"
+          placeholder="Activity Title"
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        />
+        <textarea
+          name="activity_description"
+          placeholder="Activity Description"
+          rows="4"
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md resize-none
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        ></textarea>
+      </section>
+
+      <!-- Certifications -->
+      <section class="space-y-6">
+        <h2 class="text-3xl font-semibold border-b border-white/30 pb-3 tracking-wide drop-shadow-md">📜 Certifications</h2>
+        <input
+          name="certifications"
+          placeholder="Add Certifications (comma separated)"
+          class="w-full p-5 bg-white/20 placeholder-white/70 rounded-xl border-2 border-white/30 text-white font-semibold shadow-md
+                 focus:outline-none focus:ring-4 focus:ring-green-300 focus:border-green-300 transition duration-300"
+        />
+      </section>
+
+      <button
+        type="submit"
+        class="w-full py-4 rounded-xl bg-gradient-to-r from-green-400 to-blue-600 font-extrabold text-white text-xl shadow-lg
+               hover:from-green-500 hover:to-blue-700 transition transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-4 focus:ring-green-300"
+      >
+        Save Resume
+      </button>
+
+    </form>
+  </div>
+
+</body>
+</html>

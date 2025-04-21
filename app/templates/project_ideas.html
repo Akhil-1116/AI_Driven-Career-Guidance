@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Project Ideas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <style>
+      /* Custom scrollbar for better UX */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(255 255 255 / 0.3);
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body class="bg-gradient-to-tr from-indigo-600 via-purple-500 to-pink-500 min-h-screen text-white px-6 py-12 space-y-14 font-sans">
+
+    <h1 class="text-3xl font-extrabold text-center text-yellow-300 mb-10 tracking-wide drop-shadow-lg animate__animated animate__fadeIn">
+      Explore Project Ideas
+    </h1>
+
+    {% if saved_ideas %}
+    <section class="mb-12 max-w-[1400px] mx-auto px-4">
+      <h2 class="text-2xl font-semibold text-yellow-300 mb-6 tracking-wide drop-shadow-md">Your Saved Ideas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {% for idea in ideas if idea.title in saved_ideas %}
+        <article class="bg-white/20 border border-yellow-300 rounded-xl p-6 shadow-lg hover:scale-[1.03] transition-transform duration-300 group">
+          <h3 class="text-xl font-bold text-yellow-400 mb-2">{{ idea.title }}</h3>
+          <p class="text-sm text-white/80 mb-1 italic">{{ idea.category }} | Difficulty: {{ idea.difficulty }}</p>
+          <p class="text-white/90 leading-relaxed">{{ idea.description }}</p>
+
+          <div class="mt-5 flex gap-3">
+            <button class="bg-yellow-400 text-indigo-900 font-semibold py-2 px-5 rounded-full cursor-not-allowed opacity-70" disabled>
+              Saved
+            </button>
+
+            <form method="POST" action="{{ url_for('auth.remove_idea') }}">
+              <input type="hidden" name="title" value="{{ idea.title }}" />
+              <button
+                type="submit"
+                class="bg-red-600 hover:bg-red-700 transition-colors duration-300 text-white font-semibold py-2 px-5 rounded-full shadow-md"
+              >
+                Remove
+              </button>
+            </form>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Filter Form -->
+    <section class="mb-10 max-w-[1400px] mx-auto px-4">
+      <form method="GET" action="{{ url_for('auth.project_ideas') }}" class="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 sm:gap-6">
+        <select
+          name="category"
+          class="rounded-full px-5 py-3 text-indigo-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300 transition w-full sm:w-auto"
+        >
+          <option value="">All Categories</option>
+          {% for cat in all_categories %}
+          <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+          {% endfor %}
+        </select>
+
+        <select
+          name="difficulty"
+          class="rounded-full px-5 py-3 text-indigo-900 font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300 transition w-full sm:w-auto"
+        >
+          <option value="">All Difficulty Levels</option>
+          {% for diff in all_difficulties %}
+          <option value="{{ diff }}" {% if request.args.get('difficulty') == diff %}selected{% endif %}>{{ diff }}</option>
+          {% endfor %}
+        </select>
+
+        <button
+          type="submit"
+          class="bg-yellow-400 hover:bg-yellow-500 text-indigo-900 font-bold rounded-full px-8 py-3 shadow-lg transition-colors duration-300 w-full sm:w-auto"
+        >
+          Filter
+        </button>
+      </form>
+    </section>
+
+    <!-- Display Project Ideas -->
+    <section class="space-y-8 max-w-[1400px] mx-auto px-4">
+      {% for idea in ideas if idea.title not in saved_ideas %}
+      <article
+        class="bg-white/10 border border-white/30 rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-[1.04] transition-transform duration-300 group"
+      >
+        <h3 class="text-xl font-bold text-yellow-300 mb-1 tracking-wide">{{ idea.title }}</h3>
+        <p class="text-sm text-white/70 italic mb-3">{{ idea.category }} | Difficulty: {{ idea.difficulty }}</p>
+        <p class="text-white/90 leading-relaxed">{{ idea.description }}</p>
+
+        <!-- Save Button -->
+        {% if idea.title not in saved_ideas %}
+        <form method="POST" action="{{ url_for('auth.save_idea') }}" class="mt-5">
+          <input type="hidden" name="title" value="{{ idea.title }}" />
+          <button
+            type="submit"
+            class="bg-yellow-400 hover:bg-yellow-500 text-indigo-900 font-semibold py-3 px-7 rounded-full shadow-md transition-colors duration-300"
+          >
+            Save Idea
+          </button>
+        </form>
+        {% else %}
+        <button
+          class="bg-gray-400 text-white py-3 px-7 rounded-full opacity-60 cursor-not-allowed"
+          disabled
+        >
+          Saved
+        </button>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </section>
+
+    <!-- Back Button -->
+    <div class="text-center mt-16 max-w-[1400px] mx-auto px-4">
+      <a
+        href="/student/dashboard"
+        class="inline-block bg-yellow-300 hover:bg-yellow-400 text-indigo-900 font-extrabold rounded-full px-10 py-4 shadow-xl transition-colors duration-300 tracking-wide"
+      >
+        ← Back to Dashboard
+      </a>
+    </div>
+
+</body>
+</html>

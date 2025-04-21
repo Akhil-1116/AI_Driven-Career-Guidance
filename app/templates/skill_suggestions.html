@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <title>Skill Suggestions</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+</head>
+<body class="bg-gradient-to-tr from-green-400 to-blue-500 min-h-screen p-6 text-white font-sans">
+
+  <main class="bg-white/10 backdrop-blur-md rounded-xl shadow-xl w-full p-10 space-y-8 animate__animated animate__fadeIn">
+    <h2 class="text-3xl font-extrabold text-center text-yellow-300 mb-6">Upload Resume and Choose Career Role</h2>
+
+    <form method="POST" enctype="multipart/form-data" class="space-y-6">
+      <div>
+        <label for="resume" class="block mb-2 font-semibold text-white/90">Upload Resume</label>
+        <input
+          type="file"
+          name="resume"
+          id="resume"
+          required
+          class="w-full rounded-md bg-white/90 text-gray-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <div>
+        <label for="desired_role" class="block mb-2 font-semibold text-white/90">Desired Career Role</label>
+        <input
+          type="text"
+          name="desired_role"
+          id="desired_role"
+          placeholder="e.g., Data Scientist"
+          required
+          class="w-full rounded-md bg-white/90 text-gray-900 px-4 py-2 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-green-600 hover:bg-green-700 transition-colors duration-300 rounded-full py-3 font-bold text-white shadow-lg"
+      >
+        Analyze
+      </button>
+    </form>
+
+    {% if error %}
+      <p class="text-red-400 text-center font-semibold">{{ error }}</p>
+    {% endif %}
+
+    {% if matched_skills is defined and missing_skills is defined %}
+      <section class="space-y-6 mt-6">
+        <h3 class="text-2xl font-bold text-yellow-300 text-center">Role: {{ role.title() }}</h3>
+
+        {% if chart_filename %}
+          <div class="flex justify-center mt-4">
+            <img
+              src="{{ url_for('static', filename='uploads/' + chart_filename) }}"
+              alt="Skill Pie Chart"
+              class="rounded-lg shadow-lg max-w-full h-auto"
+            />
+          </div>
+        {% else %}
+          <p class="text-center text-white/80 italic mt-4">No skill data available to generate chart.</p>
+        {% endif %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+          <div class="bg-white/20 rounded-lg p-6 shadow-md">
+            <h4 class="text-xl font-semibold text-blue-400 mb-4 flex items-center gap-2">
+              <span>✅</span> Skills You Have
+            </h4>
+            <ul class="list-disc list-inside text-white/90 space-y-1 max-h-64 overflow-y-auto">
+              {% for skill in matched_skills %}
+                <li>{{ skill }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="bg-white/20 rounded-lg p-6 shadow-md">
+            <h4 class="text-xl font-semibold text-red-400 mb-4 flex items-center gap-2">
+              <span>❌</span> Skills To Learn
+            </h4>
+            <ul class="list-disc list-inside text-white/90 space-y-1 max-h-64 overflow-y-auto">
+              {% for skill in missing_skills %}
+                <li>{{ skill }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </main>
+
+</body>
+</html>

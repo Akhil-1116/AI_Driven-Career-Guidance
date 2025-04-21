@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-tr from-indigo-600 via-purple-500 to-pink-500 min-h-screen text-white px-6 py-12 space-y-14 flex items-center justify-center">
+
+  <div class="bg-white/70 backdrop-blur-xl p-10 rounded-3xl shadow-2xl w-full max-w-4xl space-y-10 fade-in border border-white/30">
+
+    <h2 class="text-4xl font-bold text-center text-gray-900 tracking-wide animate-pulse">Your Resume</h2>
+
+    <!-- Personal Details Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">👤 Personal Details</h3>
+        <div class="space-y-1">
+          <p><strong>Name:</strong> {{ resume.name }}</p>
+          <p><strong>Email:</strong> {{ resume.email }}</p>
+          <p><strong>Phone:</strong> {{ resume.phone }}</p>
+          <p><strong>Address:</strong> {{ resume.address }}</p>
+        </div>
+      </div>
+      <!-- Lottie Animation for Personal Details -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">🔗 Social Links</h3>
+        <div class="space-y-2">
+          {% if resume.linkedin %}
+            <p><strong>LinkedIn:</strong> <a href="{{ resume.linkedin }}" class="text-blue-600 hover:underline" target="_blank">{{ resume.linkedin }}</a></p>
+          {% endif %}
+          {% if resume.github %}
+            <p><strong>GitHub:</strong> <a href="{{ resume.github }}" class="text-blue-600 hover:underline" target="_blank">{{ resume.github }}</a></p>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Lottie Animation for Social Links -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_1pxqjqps.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">🎓 Education</h3>
+        <div class="space-y-1">
+          <p><strong>Degree:</strong> {{ resume.education.degree }}</p>
+          <p><strong>College:</strong> {{ resume.education.college }}</p>
+          <p><strong>Graduation Year:</strong> {{ resume.education.year }}</p>
+          <p><strong>GPA:</strong> {{ resume.education.GPA }}</p>
+        </div>
+      </div>
+      <!-- Lottie Animation for Education -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_0fhlytwe.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">🧠 Skills</h3>
+        <ul class="list-disc list-inside space-y-1">
+          {% for skill in resume.skills %}
+            <li>{{ skill }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- Lottie Animation for Skills -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_zyquagfl.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">💼 Projects</h3>
+        <div class="space-y-4">
+          {% for project in resume.projects %}
+            <div class="bg-white/60 rounded-lg p-4 shadow-inner border border-gray-200">
+              <p class="text-lg font-semibold text-indigo-800">{{ project.project_title }}</p>
+              <p class="text-gray-700">{{ project.project_description }}</p>
+              {% if project.project_technologies %}
+                <p class="text-sm text-gray-600 mt-1"><strong>Technologies:</strong> {{ project.project_technologies | join(', ') }}</p>
+              {% endif %}
+              <p class="text-sm text-gray-600"><strong>Date:</strong> {{ project.project_date }}</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <!-- Lottie Animation for Projects -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_4kx2q32n.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="flex justify-between items-center">
+      <div class="space-y-3 text-gray-800 w-1/2">
+        <h3 class="text-2xl font-semibold">📜 Certifications</h3>
+        <ul class="list-disc list-inside space-y-1">
+          {% for cert in resume.certifications %}
+            <li>{{ cert }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!-- Lottie Animation for Certifications -->
+      <div class="w-1/2 flex justify-center">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+      </div>
+    </section>
+
+    <!-- Generate PDF Button -->
+    <form method="POST" action="/student/view_resume">
+      <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white py-3 text-lg font-semibold rounded-xl shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-300">
+        📄 Generate PDF
+      </button>
+    </form>
+
+  </div>
+
+</body>
+</html>

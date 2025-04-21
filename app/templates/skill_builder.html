@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Skill Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-200 to-blue-100 min-h-screen flex items-center justify-center p-6">
+
+    <div class="bg-white p-12 rounded-3xl shadow-2xl max-w-xl w-full space-y-8 border border-gray-100">
+        <header class="text-center">
+            <h2 class="text-3xl font-semibold text-purple-800 mb-3">Your Skill Builder</h2>
+            <p class="text-lg text-gray-600">Track your skills and get recommendations based on your field of study.</p>
+        </header>
+
+        <!-- Form to select field of study -->
+        <form method="POST" class="space-y-6">
+            <div>
+                <label for="field" class="block text-gray-700 font-medium mb-2">Select your field of study:</label>
+                <div class="relative">
+                    <select name="field" id="field" required class="block appearance-none w-full p-4 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition duration-300 pr-10">
+                        <option value="computer_science">Computer Science</option>
+                        <option value="mechanical">Mechanical Engineering</option>
+                        <option value="civil">Civil Engineering</option>
+                        <option value="electrical">Electrical Engineering</option>
+                        <option value="electronics">Electronics and Communication Engineering</option>
+                        <option value="it">Information Technology</option>
+                        <option value="chemical">Chemical Engineering</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 transition duration-300 transform hover:scale-105 shadow-md">Show Skills</button>
+        </form>
+
+        <!-- Display skills list -->
+        {% if skills %}
+            <div class="mt-8">
+                <h3 class="text-2xl font-semibold text-purple-800 mb-4">Skills to Learn:</h3>
+                <ul class="list-disc pl-6 space-y-3 text-gray-700">
+                    {% for skill in skills %}
+                        <li class="flex justify-between items-center py-2 border-b border-gray-200 last:border-none">
+                            <span class="font-medium">{{ skill.name }}</span>
+                            <span class="text-gray-500 text-sm">Level: {{ skill.level }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        
+    </div>
+
+</body>
+</html>

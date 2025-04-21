@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Guidance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Fade-in animation */
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Button Hover Effect */
+    .button-hover:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 to-indigo-600 min-h-screen flex items-center justify-center px-4 py-10">
+
+  <!-- Full Width Responsive Grid -->
+  <div class="fade-in bg-white p-8 md:p-12 rounded-2xl shadow-2xl w-full max-w-screen-xl space-y-10 md:space-y-0 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+    <!-- Ambition Input Form -->
+    <div class="space-y-8">
+      <h2 class="text-4xl font-extrabold text-gray-800 text-center md:text-left">Your Career Roadmap</h2>
+      <form method="POST" class="space-y-6">
+        <label for="ambition" class="block text-gray-700 font-medium text-lg">Enter your ambition:</label>
+        <input type="text" name="ambition" id="ambition" required placeholder="e.g. IAS, Data Scientist"
+               class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300 hover:ring-2 hover:ring-blue-400 shadow-md">
+
+        <button type="submit"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg text-lg font-semibold button-hover hover:bg-blue-700 transition duration-300">
+          Guide Me
+        </button>
+      </form>
+      <img src="{{ url_for('static', filename=roadmap.image) }}" 
+      class="w-full rounded-md shadow-lg transition-transform duration-300 transform hover:scale-105">
+
+    </div>
+
+    <!-- Roadmap Display -->
+    {% if roadmap %}
+    <div class="bg-gray-50 p-6 rounded-xl shadow-md space-y-6 overflow-y-auto max-h-[80vh]">
+
+      
+      <h3 class="text-2xl font-semibold text-gray-800">Steps to Become: {{roadmap.ambition}}</h3>
+      <ul class="list-disc pl-6 space-y-2 text-gray-700">
+        {% for step in roadmap.steps %}
+        <li class="text-lg">{{ step }}</li>
+        {% endfor %}
+      </ul>
+
+      <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Education Path:</h4>
+        <li class="text-lg">{{ roadmap.education | safe }}</li>
+      </div>
+
+      <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Training:</h4>
+        <p class="text-lg">{{ roadmap.training }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+
+</body>
+</html>

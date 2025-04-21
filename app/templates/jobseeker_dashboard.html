@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Seeker Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+</head>
+<body class="bg-gradient-to-br from-green-400 to-blue-500 min-h-screen text-white px-6 py-12 space-y-14">
+
+    <!-- Header -->
+    <h1 class="text-5xl font-extrabold text-center animate__animated animate__fadeInDown">
+        Welcome, {{ username }} <span class="text-yellow-300">(Job Seeker)</span>
+    </h1>
+    <p class="text-xl text-center text-white/80 mb-8 animate__animated animate__fadeInUp">
+        Your personal dashboard for career management
+    </p>
+
+    <!-- Dashboard Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+
+        <!-- Resume Builder -->
+        <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group animate__animated animate__fadeInUp">
+            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_jtbfg2nb.json" background="transparent" speed="1" style="height: 180px;" loop autoplay></lottie-player>
+            <h2 class="text-2xl font-bold text-center mt-4">Resume Builder</h2>
+            <p class="text-center mt-2 text-sm text-white/80">Create, update, or download your resume with customized templates.</p>
+            <div class="text-center mt-4">
+                <a href="resume_builderj" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-full transition text-white">Build or Update Resume</a>
+            </div>
+        </div>
+
+        <!-- View Resume -->
+        <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group animate__animated animate__fadeInUp">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_dmw3t0vg.json" background="transparent" speed="1" style="height: 180px;" loop autoplay></lottie-player>
+            <h2 class="text-2xl font-bold text-center mt-4">View Resume</h2>
+            <p class="text-center mt-2 text-sm text-white/80">Preview your latest resume instantly — download, edit, or update it anytime.</p>
+            <div class="text-center mt-4">
+                <a href="view_resumej" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-full transition text-white">View your Resume</a>
+            </div>
+        </div>
+
+        <!-- Interview Prep -->
+        <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group animate__animated animate__fadeInUp">
+            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_4kx2q32n.json" background="transparent" speed="1" style="height: 180px;" loop autoplay></lottie-player>            
+            <h2 class="text-2xl font-bold text-center mt-4">Interview Prep</h2>
+            <p class="text-center mt-2 text-sm text-white/80">Prepare for interviews with tips, mock interviews, and video tutorials.</p>
+            <div class="text-center mt-4">
+                <a href="/interview_prep" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition text-white">Start Interview Prep</a>
+            </div>
+        </div>
+
+        <!-- Upskill Suggestions -->
+        <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group animate__animated animate__fadeInUp">
+            <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_touohxv0.json" background="transparent" speed="1" style="height: 180px;" loop autoplay></lottie-player>
+            <h2 class="text-2xl font-bold text-center mt-4">Upskill Suggestions</h2>
+            <p class="text-center mt-2 text-sm text-white/80">Upgrade your skills with tailored suggestions for courses and certifications.</p>
+            <div class="text-center mt-4">
+                <a href="/jobseeker/skill_suggestions" class="bg-blue-600 hover:bg-blue-700 px-6 py-2 rounded-full transition text-white">View Skill Suggestions</a>
+            </div>
+        </div>
+
+        <!-- Edit Profile -->
+        <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group animate__animated animate__fadeInUp">
+            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_j1adxtyb.json" background="transparent" speed="1" style="height: 180px;" loop autoplay></lottie-player>
+            <h2 class="text-2xl font-bold text-center mt-4">Edit Profile</h2>
+            <p class="text-center mt-2 text-sm text-white/80">Update your personal profile, contact details, and social media links.</p>
+            <div class="text-center mt-4">
+                <a href="/jobseeker/profile_settings" class="bg-green-600 hover:bg-green-700 px-6 py-2 rounded-full transition text-white">Edit Profile</a>
+            </div>
+        </div>
+
+        <!-- Logout -->
+            <div class="bg-white/10 rounded-xl p-6 shadow-xl hover:scale-105 transition-transform duration-300 group nimate__animated animate__fadeInUp">
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_3rwasyjy.json" background="transparent" speed="1" class="w-40 h-40 mx-auto" loop autoplay></lottie-player>
+                <h2 class="text-2xl font-bold text-center mt-4">Logout</h2>
+                <p class="mt-2 text-sm text-white/80">Ready to head out? Save your progress and return anytime.</p>
+                <div class="text-center mt-4">
+                    <a href="/logout" class="bg-red-600 hover:bg-red-700 px-6 py-2 rounded-full transition text-white inline-block">Logout</a>
+                </div>
+            </div>
+        </div>
+
+    
+
+    <!-- 🎁 Recommended for You Section -->
+    <div class="mt-20 max-w-5xl mx-auto text-center animate__animated animate__fadeInUp">
+        <h2 class="text-3xl font-bold mb-6 text-yellow-200">🎁 Recommended for You</h2>
+        <div class="bg-white/10 rounded-xl p-6 text-white space-y-3 shadow-lg backdrop-blur-md">
+            <p>📌 <strong>Consider Upgrading Your Resume</strong> with a "Projects" section — highlight hands-on work!</p>
+            <p>🚀 <strong>Learn Git & GitHub</strong> — recruiters love version-controlled portfolios.</p>
+            <p>🎯 <strong>Choose a specialization</strong> early — AI/ML, Web Dev, Civil Design, etc. helps you stand out.</p>
+            <p>📈 <strong>Track your weekly progress</strong> with your Skill Builder — small steps win big.</p>
+        </div>
+    </div>
+
+</body>
+</html>
