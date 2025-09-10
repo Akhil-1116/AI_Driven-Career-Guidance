@@ -477,9 +477,7 @@ def resume_builder():
 
 
 # PDFKit config for Windows
-PDFKIT_CONFIG = pdfkit.configuration(
-    wkhtmltopdf=r'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
-)
+PDFKIT_CONFIG = pdfkit.configuration()
 PDFKIT_OPTIONS = {
     'enable-local-file-access': True,
     'encoding': 'UTF-8',
@@ -961,5 +959,6 @@ def skill_suggestions():
                                missing_skills=missing_skills,
                                chart_filename=chart_filename if chart_generated else None)
     return render_template('skill_suggestions.html')
+
 
 
