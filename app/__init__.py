@@ -7,7 +7,7 @@ mongo = PyMongo()  # Create mongo outside so we can init it later
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.urandom(24)
-    app.config["MONGO_URI"] = "mongodb://localhost:27017/career_db"
+    app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
     # Initialize MongoDB with app
     mongo.init_app(app)
@@ -17,3 +17,4 @@ def create_app():
     app.register_blueprint(auth)
 
     return app
+
