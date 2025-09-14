@@ -18,8 +18,6 @@ logging.basicConfig(level=logging.DEBUG)  # Or any other level you want
 # Now you can log like this
 app.logger.info('App started.')
 
-
-# Blueprint
 auth = Blueprint('auth', __name__)
 
 
