@@ -1,4 +1,4 @@
-fitz==0.0.1.dev2
+PyMuPDF==1.24.9
 Flask==3.1.0
 flask_pymongo==3.0.1
 fpdf==1.7.2
@@ -7,3 +7,4 @@ numpy==2.2.5
 pdfkit==1.0.0
 pymongo==4.12.0
 Werkzeug==3.1.3
+
