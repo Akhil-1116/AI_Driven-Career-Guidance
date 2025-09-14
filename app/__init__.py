@@ -1,13 +1,12 @@
 from flask import Flask
 from flask_pymongo import PyMongo
 import os
-from dotenv import load_dotenv
+
 
 mongo = PyMongo()  # Create mongo outside so we can init it later
 
 def create_app():
     app = Flask(__name__)
-    load_dotenv()
     app.config['SECRET_KEY'] = os.urandom(24)
     app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
@@ -19,5 +18,6 @@ def create_app():
     app.register_blueprint(auth)
 
     return app
+
 
 
